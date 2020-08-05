@@ -28,7 +28,7 @@ Here's another example for a React application
 import React, { useEffect} from 'react'
 import { responsiveRatio} from '@nutriot/responsive-ratio';
 
-export default App = props => {
+export default const App = props => {
 
   useEffect(() => responsiveRatio(), []);
 
