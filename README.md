@@ -17,8 +17,12 @@ Import and initialize the module
 ```ts
 import { responsiveRatio } from '@nutriot/responsive-ratio';
 
-window.addEventListener('DOMContentLoaded', (event) => {
-  responsiveRatio();
+window.addEventListener('DOMContentLoaded', event => {
+  const options = {
+    selectors: 'iframe, video'
+  };
+
+  responsiveRatio(options);
 });
 ```
 
