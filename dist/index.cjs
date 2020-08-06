@@ -80,13 +80,16 @@ function responsiveRatio(customOptions = {}) {
     Array.from(iframes).map(iframe => {
         const width = parseInt(String(iframe.width)) || parseInt(iframe.style.width);
         const height = parseInt(String(iframe.height)) || parseInt(iframe.style.height);
-        console.log({ width, height });
         if (width || height) {
             const ratio = Math.round(height / (width / 100) * 100) / 100;
             const wrapper = document.createElement('div');
             if (options.wrapperClass)
                 wrapper.classList.add(options.wrapperClass);
             wrapper.style.paddingBottom = `${ratio}%`;
+            if (iframe.style.width)
+                iframe.style.width = null;
+            if (iframe.style.height)
+                iframe.style.height = null;
             if (iframe.parentNode) {
                 iframe.parentNode.appendChild(wrapper);
                 wrapper.appendChild(iframe);
