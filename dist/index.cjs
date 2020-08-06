@@ -71,13 +71,14 @@ function injectStylesheet(options) {
  * Resizes element reponsively according to its width and height
  * attributes or inline styles
  * @param customOptions
+ * @returns Array
  */
 function responsiveRatio(customOptions = {}) {
     const options = Object.assign(Object.assign({}, defaultOptions), customOptions);
     if (options.injectStyles)
         injectStylesheet(options);
     const iframes = document.querySelectorAll(options.selectors);
-    Array.from(iframes).map(iframe => {
+    return Array.from(iframes).map(iframe => {
         const width = parseInt(String(iframe.width)) || parseInt(iframe.style.width);
         const height = parseInt(String(iframe.height)) || parseInt(iframe.style.height);
         if (width || height) {
@@ -93,6 +94,7 @@ function responsiveRatio(customOptions = {}) {
             if (iframe.parentNode) {
                 iframe.parentNode.appendChild(wrapper);
                 wrapper.appendChild(iframe);
+                return wrapper;
             }
         }
     });

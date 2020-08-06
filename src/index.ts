@@ -38,8 +38,9 @@ function injectStylesheet(options: ResponsiveRatioOptions): void {
  * Resizes element reponsively according to its width and height
  * attributes or inline styles
  * @param customOptions
+ * @returns Array
  */
-function responsiveRatio(customOptions = {}): void {
+function responsiveRatio(customOptions = {}): HTMLDivElement[] {
   const options = {
     ...defaultOptions,
     ...customOptions
@@ -49,7 +50,7 @@ function responsiveRatio(customOptions = {}): void {
 
   const iframes = <NodeListOf<HTMLCanvasElement | HTMLEmbedElement | HTMLIFrameElement | HTMLImageElement | HTMLVideoElement>>document.querySelectorAll(options.selectors);
 
-  Array.from(iframes).map(iframe => {
+  return Array.from(iframes).map(iframe => {
       const width = parseInt(String(iframe.width)) || parseInt(iframe.style.width);
       const height = parseInt(String(iframe.height)) || parseInt(iframe.style.height);
 
@@ -64,8 +65,10 @@ function responsiveRatio(customOptions = {}): void {
           if (iframe.style.height) iframe.style.height = null;
 
           if (iframe.parentNode) {
-            iframe.parentNode.appendChild(wrapper)
-            wrapper.appendChild(iframe)
+            iframe.parentNode.appendChild(wrapper);
+            wrapper.appendChild(iframe);
+
+            return wrapper;
           }
       }
   });
