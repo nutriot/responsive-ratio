@@ -68,8 +68,6 @@ function responsiveRatio(customOptions = {}): void {
             wrapper.appendChild(iframe)
           }
       }
-
-      return null;
   });
 }
 
