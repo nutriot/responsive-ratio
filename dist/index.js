@@ -75,6 +75,9 @@ function responsiveRatio(customOptions = {}) {
         injectStylesheet(options);
     const iframes = document.querySelectorAll(options.selectors);
     return Array.from(iframes).map(iframe => {
+        var _a, _b;
+        if (String(iframe.width).endsWith('%') || ((_b = (_a = iframe.style) === null || _a === void 0 ? void 0 : _a.width) === null || _b === void 0 ? void 0 : _b.endsWith('%')))
+            return null;
         const width = parseInt(String(iframe.width)) || parseInt(iframe.style.width);
         const height = parseInt(String(iframe.height)) || parseInt(iframe.style.height);
         if (width || height) {
@@ -93,6 +96,7 @@ function responsiveRatio(customOptions = {}) {
                 return wrapper;
             }
         }
+        return null;
     });
 }
 

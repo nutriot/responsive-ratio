@@ -51,26 +51,30 @@ function responsiveRatio(customOptions = {}): HTMLDivElement[] {
   const iframes = <NodeListOf<HTMLCanvasElement | HTMLEmbedElement | HTMLIFrameElement | HTMLImageElement | HTMLVideoElement>>document.querySelectorAll(options.selectors);
 
   return Array.from(iframes).map(iframe => {
-      const width = parseInt(String(iframe.width)) || parseInt(iframe.style.width);
-      const height = parseInt(String(iframe.height)) || parseInt(iframe.style.height);
+    if (String(iframe.width).endsWith('%') || iframe.style?.width?.endsWith('%')) return null;
 
-      if (width || height) {
-        const ratio = Math.round(height / (width / 100) * 100) / 100;
-        const wrapper = document.createElement('div');
+    const width = parseInt(String(iframe.width)) || parseInt(iframe.style.width);
+    const height = parseInt(String(iframe.height)) || parseInt(iframe.style.height);
 
-          if (options.wrapperClass) wrapper.classList.add(options.wrapperClass);
-          wrapper.style.paddingBottom = `${ratio}%`;
+    if (width || height) {
+      const ratio = Math.round(height / (width / 100) * 100) / 100;
+      const wrapper = document.createElement('div');
 
-          if (iframe.style.width) iframe.style.width = null;
-          if (iframe.style.height) iframe.style.height = null;
+        if (options.wrapperClass) wrapper.classList.add(options.wrapperClass);
+        wrapper.style.paddingBottom = `${ratio}%`;
 
-          if (iframe.parentNode) {
-            iframe.parentNode.appendChild(wrapper);
-            wrapper.appendChild(iframe);
+        if (iframe.style.width) iframe.style.width = null;
+        if (iframe.style.height) iframe.style.height = null;
 
-            return wrapper;
-          }
-      }
+        if (iframe.parentNode) {
+          iframe.parentNode.appendChild(wrapper);
+          wrapper.appendChild(iframe);
+
+          return wrapper;
+        }
+    }
+
+    return null;
   });
 }
 
