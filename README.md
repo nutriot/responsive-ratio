@@ -34,7 +34,13 @@ import { responsiveRatio} from '@nutriot/responsive-ratio';
 
 export default const App = props => {
 
-  useEffect(() => responsiveRatio(), []);
+  useEffect(() => {
+    responsiveRatio();
+
+    return () => {
+      // Cleanup
+    }
+  }, []);
 
   return (
     <iframe
