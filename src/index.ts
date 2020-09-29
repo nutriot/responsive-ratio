@@ -14,8 +14,8 @@ const defaultOptions: ResponsiveRatioOptions = {
  */
 function injectStylesheet(options: ResponsiveRatioOptions): void {
   const {selectors, wrapperClass} = options;
-
   const nano = create();
+
   addonNesting(nano);
 
   nano.put(`.${wrapperClass}`, {
