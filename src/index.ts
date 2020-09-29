@@ -1,12 +1,12 @@
 
 import { create } from 'nano-css';
-import { addon as addonNesting } from 'nano-css/addon/nesting'
+import { addon as addonNesting } from 'nano-css/addon/nesting';
 
 const defaultOptions: ResponsiveRatioOptions = {
   injectStyles: true,
   selectors: 'iframe',
   wrapperClass: 'responsive-ratio'
-}
+};
 
 /**
  * Injects default styles
