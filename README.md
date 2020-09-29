@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', event => {
 Here's another example for a React application
 
 ```jsx
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { responsiveRatio} from '@nutriot/responsive-ratio';
 
 export default const App = props => {
