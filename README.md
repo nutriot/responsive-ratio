@@ -26,32 +26,6 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 ```
 
-Here's another example for a React application
-
-```jsx
-import React, { useEffect } from 'react'
-import { responsiveRatio } from '@nutriot/responsive-ratio';
-
-export default const App = props => {
-
-  useEffect(() => {
-    responsiveRatio();
-
-    return () => {
-      // Cleanup
-    }
-  }, []);
-
-  return (
-    <iframe
-      src="https://www.youtube.com/embed/-QFS_VPcbjI"
-      width="1920"
-      height="1080"
-    />
-  )
-}
-```
-
 ### Options
 
 #### `injectStyles`
